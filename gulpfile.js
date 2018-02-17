@@ -6,6 +6,8 @@ const source = require('vinyl-source-stream');
 const sass = require('gulp-sass');
 const mocha = require('gulp-mocha');
 const server = require('gulp-develop-server');
+const newer = require('gulp-newer');
+const imagemin = require('gulp-imagemin');
 
 gulp.task('js', function () {
    return browserify({entries: './src/app.js', extensions: ['.js'], debug: true})
@@ -29,6 +31,13 @@ gulp.task('sass:watch', function () {
     gulp.watch('./src/**/*.scss', ['sass']);
 });
 
+gulp.task('images', function () {
+    gulp.src('./src/images/**')
+    .pipe(newer('./dist/images'))
+    .pipe(imagemin())
+    .pipe(gulp.dest('./dist/images'));
+});
+
 gulp.task('test', () => {
     return gulp.src('./test/*.spec.js', {read: false})
         .pipe(mocha({
@@ -46,5 +55,5 @@ gulp.task('server:watch', function () {
 });
 
 gulp.task('default', function () {
-  gulp.start('sass', 'sass:watch', 'js', 'js:watch', 'server', 'server:watch');
+  gulp.start('images', 'sass', 'sass:watch', 'js', 'js:watch', 'server', 'server:watch');
 });
