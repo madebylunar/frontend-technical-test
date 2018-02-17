@@ -1,0 +1,96 @@
+.card {
+	display: flex;
+	flex-grow: 1;
+
+	&__image {
+		flex-shrink: 0;
+		width: 30%;
+		background: center no-repeat $c-offLight;
+		background-size: cover;
+
+		&:after {
+			content: '';
+			display: block;
+			position: relative;
+			padding-bottom: 100%;
+			background: rgba($c-dark, 0.5);
+			opacity: 0;
+			transition: opacity 0.3s ease-in-out;
+		}
+
+		&:hover:after {
+			opacity: 1;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-grow: 1;
+		flex-direction: column;
+		justify-content: center;
+		position: relative;
+		padding: 10px 20px;
+		outline: 1px solid $c-offLight;
+		background: $c-light;
+	}
+
+
+	@media screen and (min-width: $mq-small) {
+		flex-direction: column;
+
+		&__image {
+			width: auto;
+
+			&:after {
+				padding-bottom: (246/470)*100%;
+			}
+		}
+
+		&__content {
+			align-items: center;
+			justify-content: flex-start;
+			padding: 20px;
+			text-align: center;
+		}
+
+		&__heading {
+			border-style: solid;
+			border-width: 1px 0;
+			margin-bottom: 1em;
+		}
+	}
+}
+
+.cardGroup {
+	display: flex;
+	flex-direction: column;
+
+	&__item {
+		position: relative;
+		display: flex;
+		&:hover {
+			z-index: 1;
+		}
+	}
+
+	@media screen and (min-width: $mq-small) {
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		&__item {
+			width: 50%;
+		}
+	}
+
+	@media screen and (min-width: $mq-medium) {
+		&__item {
+			width: (1/3)*100%;
+		}
+	}
+
+	@media screen and (min-width: $mq-large) {
+		&__item {
+			width: 25%;
+		}
+	}
+}

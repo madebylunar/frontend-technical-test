@@ -1,5 +1,7 @@
-$bg-colour: #ccc;
+@import 'styles/reset';
+@import 'styles/variables';
+@import 'styles/typography';
 
-body {
-	background-color: $bg-colour;
-}
+@import 'styles/card';
+@import 'styles/lazyImg';
+@import 'styles/loader';
