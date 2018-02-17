@@ -3,17 +3,12 @@
 * handling asynchronous data fetching
 **/
 
-export const getData = (cb) => {
-    const vehicles = new XMLHttpRequest();
-    vehicles.open('GET', 'http://localhost:9988/api/vehicle');
+export default class VehicleAPI {
+	static getAll() {
+		return fetch('/api/vehicle').then(response => response.json());
+	}
 
-    vehicles.onreadystatechange = function() {
-        if(vehicles.readyState === 4) {
- 		    if(vehicles.status === 200) {
- 			    cb(vehicles.responseText);
-		    }
-		}
-	};
-
-	vehicles.send();
-};
+	static getSingle(id) {
+		return fetch(`/api/vehicle/${id}`).then(response => response.json());
+	}
+}
