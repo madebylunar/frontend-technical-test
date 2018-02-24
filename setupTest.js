@@ -5,6 +5,7 @@ const chai = require('chai');
 const chaiEnzyme = require('chai-enzyme');
 const JSDOM = require('jsdom').JSDOM;
 const exposedProperties = ['window', 'navigator', 'document'];
+const server = require('./server.js');
 
 const dom = new JSDOM('');
 global.window = dom.window;
@@ -23,3 +24,5 @@ global.navigator = {
 chai.use(chaiEnzyme());
 
 global.fetch = require('node-fetch');
+
+server.listen(9988);
