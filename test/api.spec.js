@@ -1,20 +1,23 @@
-/**
- * Created by brett.hadley on 10/10/2016.
- */
-const expect = require('chai').expect;
-const getData = require('../src/api').getData;
-const server = require('../server');
+import { expect } from 'chai';
+import server from '../server';
+import VehicleAPI from '../src/api';
 
-describe("getData example test", function() {
-    beforeEach(() => {
+describe("VehicleAPI Tests", function() {
+    before(() => {
         server.listen(9988);
     });
 
-    it('should respond with an array of vehicles', (done) => {
-        getData((response) => {
-            const data = JSON.parse(response);
-            expect(Array.isArray(data.vehicles)).to.equal(true);
+    it('getAll should respond with an array of vehicles', (done) => {
+        VehicleAPI.getAll().then(data => {
+            expect(data.vehicles).to.be.a('array');
+            done();
+        });
+    });
+
+    it('getSingle should respond with an object of vehicle details', (done) => {
+        VehicleAPI.getSingle('xe').then(data => {
+            expect(data).to.be.a('object');
             done();
         })
-    })
+    });
 });

@@ -22,4 +22,4 @@ global.navigator = {
 
 chai.use(chaiEnzyme());
 
-XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+global.fetch = require('node-fetch');

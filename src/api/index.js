@@ -5,10 +5,10 @@
 
 export default class VehicleAPI {
 	static getAll() {
-		return fetch('/api/vehicle').then(response => response.json());
+		return fetch('http://localhost:9988/api/vehicle').then(response => response.json());
 	}
 
 	static getSingle(id) {
-		return fetch(`/api/vehicle/${id}`).then(response => response.json());
+		return fetch(`http://localhost:9988/api/vehicle/${id}`).then(response => response.json());
 	}
 }
